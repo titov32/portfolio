@@ -1,0 +1,31 @@
+# Бинарники Go
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+
+# Кэш и временные файлы Go
+*.log
+*.tmp
+*.swp
+*.swo
+*.DS_Store
+
+# Go build cache
+bin/
+build/
+dist/
+
+# IDE/редакторы
+.vscode/
+.idea/
+*.iml
+
+# Модули (кроме go.mod/go.sum)
+vendor/
+
+# Docker
+*.pid

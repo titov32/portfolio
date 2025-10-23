@@ -1,0 +1,26 @@
+# Исключаем всё лишнее из образа
+
+# Git
+.git
+.gitignore
+
+# IDE/редакторы
+.vscode
+.idea
+*.iml
+
+# Логи и временные файлы
+*.log
+*.tmp
+*.swp
+*.swo
+*.DS_Store
+
+# Билд-артефакты
+bin
+build
+dist
+
+# Документы
+README.md
+Dockerfile

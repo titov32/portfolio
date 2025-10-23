@@ -1,0 +1,177 @@
+:root {
+    --bg: #f4f6f9;
+    --text: #2c3e50;
+    --header-bg: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    --link: #00d9ff;
+    --link-hover: #ffcb05;
+    --card-bg: #fff;
+    --card-shadow: rgba(0, 0, 0, 0.1);
+}
+
+body.dark {
+    --bg: #121212;
+    --text: #e0e0e0;
+    --header-bg: linear-gradient(135deg, #232526, #414345);
+    --link: #4dd0e1;
+    --link-hover: #ffd166;
+    --card-bg: #1e1e1e;
+    --card-shadow: rgba(0, 0, 0, 0.6);
+}
+
+body {
+    font-family: "Inter", "Segoe UI", Roboto, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    transition:
+        background 0.3s,
+        color 0.3s;
+}
+
+header {
+    background: var(--header-bg);
+    color: white;
+    padding: 60px 20px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    position: relative;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 3rem;
+    font-weight: 700;
+}
+
+header p {
+    font-size: 1.2rem;
+    margin: 10px 0;
+    opacity: 0.9;
+}
+
+header a {
+    color: var(--link);
+    text-decoration: none;
+    margin: 0 12px;
+    font-weight: 600;
+    transition: color 0.3s;
+}
+
+header a:hover {
+    color: var(--link-hover);
+}
+
+#theme-toggle {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: transparent;
+    border: 2px solid white;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition:
+        background 0.3s,
+        color 0.3s;
+}
+
+#theme-toggle:hover {
+    background: white;
+    color: #333;
+}
+
+.container {
+    max-width: 1000px;
+    margin: auto;
+    padding: 40px 20px;
+}
+
+h2 {
+    color: var(--text);
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+    position: relative;
+}
+
+h2::after {
+    content: "";
+    display: block;
+    width: 60px;
+    height: 3px;
+    background: var(--link);
+    margin-top: 6px;
+    border-radius: 2px;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+ul li {
+    background: var(--card-bg);
+    margin: 10px 0;
+    padding: 12px 16px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px var(--card-shadow);
+    font-size: 0.95rem;
+    transition:
+        background 0.3s,
+        color 0.3s;
+}
+
+.card {
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 20px 25px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 12px var(--card-shadow);
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.3s,
+        color 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 16px var(--card-shadow);
+}
+
+.card strong {
+    font-size: 1.2rem;
+    color: var(--text);
+}
+
+a.project-link {
+    display: inline-block;
+    margin-top: 12px;
+    padding: 8px 16px;
+    background: linear-gradient(135deg, #00d9ff, #00b4d8);
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    transition:
+        background 0.3s,
+        transform 0.2s;
+}
+
+a.project-link:hover {
+    background: linear-gradient(135deg, #0096c7, #0077b6);
+    transform: scale(1.05);
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+    font-size: 0.9rem;
+    color: #7f8c8d;
+}

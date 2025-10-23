@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>{{.Main.Name}} - Resume</title>
+        <link rel="stylesheet" href="/static/style.css" />
+        <button id="theme-toggle">🌓 Theme</button>
+    </head>
+    <body>
+        <h1>{{.Main.Name}}</h1>
+        <p>{{.Main.JobTitle}}</p>
+        <p>Email: {{.Main.Email}}</p>
+        <p>
+            <a href="{{.Main.GitHub}}" target="_blank">GitHub</a> |
+            <a href="{{.Main.LinkedIn}}" target="_blank">LinkedIn</a>
+        </p>
+
+        <div class="section">
+            <h2>Skills</h2>
+            <ul>
+                <li>Programming Languages: {{.Skills.ProgrammingLanguages}}</li>
+                <li>Frameworks: {{.Skills.Frameworks}}</li>
+                <li>Tools: {{.Skills.Tools}}</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Experience</h2>
+            {{range .Experience}}
+            <div class="card">
+                <strong>{{.Title}}</strong> at {{.Company}} ({{.StartDate}} –
+                {{.EndDate}})<br />
+                <em>{{.Location}}</em><br />
+                <p>{{.Description}}</p>
+            </div>
+            {{end}}
+        </div>
+
+        <div class="section">
+            <h2>Projects</h2>
+            {{range .Projects}}
+            <div class="card">
+                <strong>{{.Title}}</strong><br />
+                <p>{{.Description}}</p>
+                {{if .Link}}<a href="{{.Link}}" target="_blank">Project Link</a
+                >{{end}}
+            </div>
+            {{end}}
+        </div>
+
+        <div class="section">
+            <h2>About</h2>
+            {{range .About}}
+            <h3>{{.Title}}</h3>
+            <p>{{.Description}}</p>
+            {{end}}
+        </div>
+
+        <footer>© {{.Main.Name}} — Resume generated with Go</footer>
+        <script>
+            document
+                .getElementById("theme-toggle")
+                .addEventListener("click", () => {
+                    document.body.classList.toggle("dark");
+                });
+        </script>
+    </body>
+</html>

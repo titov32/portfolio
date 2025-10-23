@@ -1,0 +1,63 @@
+server:
+  host: "localhost"
+  port: 8080
+
+database:
+  user: "admin"
+  password: "secret"
+  name: "mydb"
+
+main:
+  name: "John Doe"
+  email: "john.doe@example.com"
+  github: "https://github.com/johndoe"
+  linkedin: "https://linkedin.com/in/johndoe"
+  job_title: "Software Engineer"
+
+skills:
+  Programming Languages: Go, Python, JavaScript
+  Frameworks: Django, Flask, React
+  Tools: Docker, Kubernetes, Git
+tools:
+  - Kubernetes
+  - Docker
+  - Python
+  - Linux
+  - Shell Scripting
+  - terraform
+  - Ansible
+  - prometheus/grafana
+
+experience:
+  - title: "DevOps Engineer"
+    company: "Eltex Corp"
+    location: "Novosibirsk, Russia"
+    start_date: "2025-05-06"
+    end_date: "current"
+    description: "Developed and maintained software applications using Python. Managed infrastructure using Docker and Kubernetes. Implemented CI/CD pipelines using Jenkins, GitLab CI. Monitoring and troubleshooting infrastructure issues. Collaborated with cross-functional teams to ensure smooth deployment and maintenance of applications. Participated in code reviews and provided technical guidance to team members."
+
+education:
+  - degree: "Bachelor’s degree in Fundamental Informatics and Information Technologies"
+    university: "Kemerovo State University"
+    location: "Kemerovo, Russia"
+    start_date: "2011-09-01"
+    end_date: "2015-05-31"
+
+certifications:
+  - name: "Python Developer Certification"
+    organization: "Python Institute"
+    date: "2021-06-15"
+    description: "Completed the Go Developer Certification program."
+
+projects:
+  - title: "My Portfolio Website"
+    description: "Built a personal portfolio website using Go"
+    link: "https://github.com/johndoe/my-portfolio"
+  - title: "Bot for managed VMs"
+    description: "Developed a bot for managing virtual machines using Python"
+  - title: "Monitoring and Troubleshooting Infrastructure "
+    description: "Implemented monitoring and troubleshooting with GitOps and Prometheus, Grafana, and Alertmanager."
+
+about:
+  - title: "About Me"
+    description: "I am a software engineer with experience in Go, Python. I have worked on various projects using Django, Flask, and React. I am passionate about building scalable and efficient software solutions."
