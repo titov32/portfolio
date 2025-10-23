@@ -23,5 +23,6 @@ COPY --from=builder /src/app/portfolio .
 COPY app/static ./static
 COPY app/data.yml ./
 COPY app/templates ./templates
+
 EXPOSE 8080
 CMD ["./portfolio"]

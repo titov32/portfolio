@@ -1,7 +1,7 @@
 package main
 
 import (
-	"context"
+	"bytes"
 	"encoding/json"
 	"fmt"
 	"html/template"
@@ -9,10 +9,8 @@ import (
 	"net/http"
 	"path/filepath"
 	data "portfolio/modules"
-	"time"
 
-	"github.com/chromedp/cdproto/page"
-	"github.com/chromedp/chromedp"
+	"github.com/jung-kurt/gofpdf"
 )
 
 func main() {
@@ -51,9 +49,12 @@ func main() {
 
 	// PDF endpoint
 	http.HandleFunc("/pdf", func(w http.ResponseWriter, r *http.Request) {
-		pdfBytes, err := renderPDF("http://localhost:8080")
+		// Загружаем YAML → Resume
+		resume, _ := data.LoadData("data.yml")
+
+		pdfBytes, err := renderPDF(resume)
 		if err != nil {
-			http.Error(w, err.Error(), http.StatusInternalServerError)
+			http.Error(w, "PDF generation error: "+err.Error(), http.StatusInternalServerError)
 			return
 		}
 
@@ -83,34 +84,40 @@ func main() {
 	log.Fatal(http.ListenAndServe(":8080", nil))
 }
 
-func renderPDF(url string) ([]byte, error) {
-	ctx, cancel := chromedp.NewContext(context.Background())
-	defer cancel()
+func renderPDF(resume *data.Resume) ([]byte, error) {
+	pdf := gofpdf.New("P", "mm", "A4", "")
+	pdf.AddPage()
+	pdf.SetFont("Arial", "B", 20)
+	pdf.Cell(0, 10, resume.Main.Name)
+	pdf.Ln(12)
 
-	ctx, cancel = context.WithTimeout(ctx, 15*time.Second)
-	defer cancel()
+	pdf.SetFont("Arial", "", 14)
+	pdf.Cell(0, 10, resume.Main.JobTitle)
+	pdf.Ln(12)
 
-	var pdfBuf []byte
+	pdf.SetFont("Arial", "", 12)
+	pdf.Cell(0, 10, "Email: "+resume.Main.Email)
+	pdf.Ln(8)
+	pdf.Cell(0, 10, "GitHub: "+resume.Main.GitHub)
+	pdf.Ln(8)
+	pdf.Cell(0, 10, "LinkedIn: "+resume.Main.LinkedIn)
+	pdf.Ln(15)
 
-	err := chromedp.Run(ctx,
-		chromedp.Navigate(url),
-		chromedp.WaitReady("body", chromedp.ByQuery),
-		chromedp.Sleep(1*time.Second),
-		chromedp.ActionFunc(func(ctx context.Context) error {
-			// берём три возвращаемых значения
-			buf, _, err := page.PrintToPDF().
-				WithPrintBackground(true).
-				Do(ctx)
-			if err != nil {
-				return err
-			}
-			pdfBuf = buf
-			return nil
-		}),
-	)
+	pdf.SetFont("Arial", "B", 16)
+	pdf.Cell(0, 10, "Skills")
+	pdf.Ln(10)
+	pdf.SetFont("Arial", "", 12)
+	pdf.MultiCell(0, 8,
+		"Programming Languages: "+resume.Skills.ProgrammingLanguages+"\n"+
+			"Frameworks: "+resume.Skills.Frameworks+"\n"+
+			"Tools: "+resume.Skills.Tools,
+		"", "", false)
+
+	// пишем в память
+	var buf bytes.Buffer
+	err := pdf.Output(&buf)
 	if err != nil {
 		return nil, err
 	}
-
-	return pdfBuf, nil
+	return buf.Bytes(), nil
 }
